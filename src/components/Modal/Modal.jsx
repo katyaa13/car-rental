@@ -1,7 +1,7 @@
-import React, { useEffect } from 'react';
-import css from './Modal.module.css';
-import Button from '../Button/Button';
+import { useEffect } from 'react';
 import sprite from '../../images/sprite.svg';
+import Button from '../Button/Button';
+import css from './Modal.module.css';
 
 const Modal = ({ car, onClose }) => {
   useEffect(() => {
@@ -28,15 +28,13 @@ const Modal = ({ car, onClose }) => {
             </svg>
           </button>
           <img
-            loading="lazy"
-            src={car.img || 'https://source.unsplash.com/s3mTM-faobU/800x600'}
-            alt={car.make}
+            data-ci-make={car.make}
+            data-ci-model={car.model}
+            data-ci-year={car.year}
+            alt={`${car.make} ${car.model}`}
             width={461}
             height={248}
             className={css.image}
-            onError={e => {
-              e.target.src = 'https://source.unsplash.com/s3mTM-faobU/800x600';
-            }}
           />
           <h2 className={css.title}>
             {car.make} <span>{car.model}</span>, {car.year}

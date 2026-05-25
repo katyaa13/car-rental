@@ -1,11 +1,11 @@
-import React, { useState } from 'react';
-import css from './CarItem.module.css';
-import Button from './../Button/Button';
-import Modal from './../Modal/Modal';
-import sprite from '../../images/sprite.svg';
+import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import sprite from '../../images/sprite.svg';
 import { addFavorite, removeFavorite } from '../../redux/favoritesSlice';
 import { selectFavorites } from '../../redux/selectors';
+import Button from './../Button/Button';
+import Modal from './../Modal/Modal';
+import css from './CarItem.module.css';
 
 const CarItem = ({ car }) => {
   const [isModalOpen, setModalOpen] = useState(false);
@@ -36,15 +36,13 @@ const CarItem = ({ car }) => {
       <li className={css.item}>
         <div className={css.imageWrap}>
           <img
-            loading="lazy"
-            src={car.img || 'https://source.unsplash.com/s3mTM-faobU/800x600'}
-            alt={car.make}
+            data-ci-make={car.make}
+            data-ci-model={car.model}
+            data-ci-year={car.year}
+            alt={`${car.make} ${car.model}`}
             width={274}
             height={268}
             className={css.image}
-            onError={e => {
-              e.target.src = 'https://source.unsplash.com/s3mTM-faobU/800x600';
-            }}
           />
           <button
             className={`${css.heartBtn} ${isChecked ? css.checked : ''}`}
